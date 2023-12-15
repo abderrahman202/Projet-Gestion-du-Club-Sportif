@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "c:/Users/Hp/OneDrive/Documents/courses/GEMI/S1/Informatique/Projet-Gestion-du-Club-Sportif/src",
+      "program": "c:/Users/Hp/OneDrive/Documents/courses/GEMI/S1/Informatique/Projet-Gestion-du-Club-Sportif/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
