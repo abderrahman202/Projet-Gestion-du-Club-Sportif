@@ -35,9 +35,10 @@ class Menu{
 
 class Adherent{
     private:
-        int Id[100] = {1,2};
+        int Id[100] = {1,2}, choix_modifier=0;
         string Tel[100] = {"0611223344", "0660313525"};
         string Prenom[100] = {"Abderrahman","Mohamed"},Nom[100] = {"BENIFFOU","WASSUP"},Date_de_naissance[100] = {"01/01/2002","01/02/2002"},Date_dhadetion[100] = {"01/02/2023","15/12/2023"};
+        string n_Prenom;
     public: 
         static int size;
     Adherent(){
@@ -47,6 +48,37 @@ class Adherent{
         for(int i=0;i<size;i++){
             cout<<"\n"<<Id[i]<<"/\n\tPrénom: "<<Prenom[i]<<"\n\tNom: "<<Nom[i]<<"\n\tTel: "<<Tel[i]<<"\n\tDate de naissance: "<<Date_de_naissance[i]<<"\n\tDate d'adhésion: "<<Date_dhadetion[i]<<endl;
         }
+    }
+    void modifer_adherent(){
+        show_adherent();
+        cout<<"\n-------------------------------------------\n\n";                    
+        cout<<"Quel adhérent vous voullez modifier ?";
+        cin>>choix_modifier;
+        do
+        {
+            cout<<"Saisir un adhérent dans la liste ";
+            cin>>choix_modifier;
+        } while (choix_modifier<size);
+        cout<<"\n\nSaisir ce que vous voulez modifier:\n1. Prénom\n2. Nom\n3. Tel\n4. Date de naissaince\n5. Sports pratiquées\n6. Retour\n0. Quitter";
+        cin>>choix_modifier;
+        do{
+            cout<<"\n\nSaisir ce que vous voulez modifier:\n1. Prénom\n2. Nom\n3. Tel\n4. Date de naissaince\n5. Sports pratiquées\n6. Retour\n0. Quitter";
+            cin>>choix_modifier;
+            do{
+                int choix_modifier1;
+                switch (choix_modifier1)
+                {
+                case 0:
+                    exit(0);
+                case1:
+                    cout<<"Saisir le nouveau prénom: ";
+                    cin>>Prenom[choix_modifier1];
+
+                default:
+                    break;
+                }
+            }while(choix_modifier=!6);
+        }while(choix_modifier=!6);    
     }
     
 };
@@ -70,7 +102,14 @@ int main(){
     Adherent adherent = Adherent();
 
 
-    cout<<"------------------------------Gestion du club de sport GEMI-------------------------------------\n\n";
+    cout<<"                    ________________________________________\n";
+    cout<<"                  _/_                                      _\\_\n";
+    cout<<"               __/__/        Gestion du club de sport        \\__\\__\n";
+    cout<<"              | « « |                 GEMI                   | » » |\n";
+    cout<<"               ¯¯\\¯¯\\       Abderrahman BENIFFOU             /¯¯/¯¯\n";
+    cout<<"                  ¯\\¯                                      ¯/¯\n";
+    cout<<"                    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n\n\n";
+
     menu.display();
     if(menu.getChoix()!=0){
 
@@ -92,8 +131,9 @@ int main(){
                     cout<<"\n-----------------------------------------------------------------------------------\n\n";
                     break;
                 case 3:
-                    cout<<"La fonction Modifier\n\n";
-                    adherent.show_adherent();
+                    adherent.modifer_adherent();
+                    //int choix_modifier;
+                    
                     break;
                 case 4:
                     cout<<"La foction Supprimer\n\n";
