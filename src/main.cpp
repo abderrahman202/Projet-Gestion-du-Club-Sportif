@@ -43,7 +43,7 @@ public:
         cout << "2. Nom\n";
         cout << "3. Tel\n";
         cout << "4. Date de naissaince\n";
-        cout << "5. Sports pratiquées\n";// Pas encore faite parsqu'il faut avoir une listes des sports pratiquées dans le club
+        cout << "5. Sports pratiquées\n";// N'est pas encore faite, parsqu'il faut avoir une listes des sports pratiquées dans le club
         cout << "6. Retour\n";
         cout << "0. Quitter\n";
         cout << "Queceque voullez-vous modifier ?";
@@ -217,3 +217,4 @@ int main() {
             }while (menu.getChoix()!=0);
             }else{exit(0);}
 }
+
