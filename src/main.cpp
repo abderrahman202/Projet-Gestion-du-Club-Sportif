@@ -29,14 +29,14 @@ public:
 
     void modifer_adherent() {
         show_adherent();
-        cout << "\n----------------------------------------------------------------------------------------\n\n";
+        cout << "\n---------------------------------------------------------------------\n\n";
         cout << "Quel adhérent vous voullez modifier ?";
         cin >> choix_modifier;
-        cout << "\n----------------------------------------------------------------------------------------\n\n";
-        while (choix_modifier >= size+1){
+        cout << "\n----------------------------------------------------------------------\n\n";
+        while (choix_modifier >= size+1){//Je sais pas pourquoi do while loop ne fonctionne pas !!!
             cout << "Saisir un adhérent dans la liste ";
             cin >> choix_modifier;
-            cout << "\n----------------------------------------------------------------------------------------\n\n";
+            cout << "\n----------------------------------------------------------------------\n\n";
             }
         cout << "\n\nSaisir le numéro d'information ce que vous voulez modifier:\n";
         cout << "1. Prénom\n";
@@ -109,7 +109,7 @@ public:
         cout << "1. Gestion des adhérents\n2. Gestion des entrainneurs\n3. Gestion des équipes\n4. Gestion des séances d'entrainements \n5. Gestion des équipements\n0. Quitter\n\n";
         cout << "Queceque vous voullez ?";
         cin >> choix;
-        cout << "\n----------------------------------------------------------------------------------------\n\n";
+        cout << "\n----------------------------------------------------------------------\n\n";
     }
 
     void display_Gestion_des_adherents(Adherent &adherent) {
@@ -122,18 +122,18 @@ public:
             cout << "0. Quitter\n\n";
             cout << "Queceque vous voullez ?";
             cin >> choix_gestion_adherent;
-            cout << "\n----------------------------------------------------------------------------------------\n\n";
+            cout << "\n----------------------------------------------------------------------\n\n";
             switch (choix_gestion_adherent) {
                 case 1:
                     cout << "La fonction Nouvelle inscription\n\n";
                     break;
                 case 2:
                     adherent.show_adherent();
-                    cout << "\n-----------------------------------------------------------------------------------\n\n";
+                    cout << "\n----------------------------------------------------------------------\n\n";
                     break;
                 case 3:
                     adherent.modifer_adherent();
-                    cout << "\n-----------------------------------------------------------------------------------\n\n";
+                    cout << "\n----------------------------------------------------------------------\n\n";
                     break;
                 case 4:
                     cout << "La foction Supprimer\n\n";
@@ -159,7 +159,7 @@ int Adherent::size = 2;
 int main() {
     int choix_adherents;
 
-    Menu menu = Menu();     // objet menu
+    Menu menu = Menu();
     Adherent adherent = Adherent();
 
     cout << "                    ________________________________________\n";
@@ -216,5 +216,4 @@ int main() {
             
             }while (menu.getChoix()!=0);
             }else{exit(0);}
-            
 }
