@@ -4,26 +4,40 @@
 
 using namespace std;
 
-//class Adherent;
 
 //------------------------------------------------------------------------------------//
 //---------------------------------Class Adherent-------------------------------------//
 //------------------------------------------------------------------------------------//
-class Adherent {
+class Adherent{
 private:
-    friend class Menu; // Uncomment this line if you want Menu to be a friend of Adherent
-    int Id[100] = {1, 2}, choix_modifier = 0,choix_modifier1=0;
-    string Tel[100] = {"0611223344", "0660313525"};
-    string Prenom[100] = {"Abderrahman", "Mohamed"}, Nom[100] = {"BENIFFOU", "WASSUP"}, Date_de_naissance[100] = {"01/01/2002", "01/02/2002"}, Date_dhadetion[100] = {"01/02/2023", "15/12/2023"};
-
+    int Id[100] = {1, 2,3,4}, choix_modifier = 0,choix_modifier1=0, choix_supprimer=0;
+    string Tel[100] = {"0611223344", "0660313525","0612345678","0645486935"};
+    string Prenom[100] = {"Abderrahman", "Mohamed","Youssef","Oussama"}, Nom[100] = {"BENIFFOU", "WASSUP","HOUARI","MESBAHI"}, Date_de_naissance[100] = {"01/01/2002", "01/02/2002","05/04/1981","21/01/1999"}, Date_adhetion[100] = {"01/02/2023", "15/12/2023","16/12/2023","15/12/2023"};
+    
 public:
-    static int size;
+    static int size;  
     Adherent() {
     }
 
+    void new_adherent(){
+        Prenom[size]=size;
+        cout<<"Saisir le prénom: ";
+        cin>>Prenom[size];
+        cout<<"\nSaisir le nom: ";
+        cin>>Nom[size];
+        cout<<"\nSaisir le Telephone: ";
+        cin>>Tel[size];
+        cout<<"Saisir la date de naissance: ";
+        cin>>Date_de_naissance[size];
+        cout<<"Saisir la date d'adhésion: ";
+        cin>>Date_adhetion[size];
+        Id[size]=size+1;
+        size++;
+        cout<<"\n---------------------------------------------------------------------\n\n";
+    }
     void show_adherent() {
         for (int i = 0; i < size; i++) {
-            cout << "\n" << Id[i] << "/\n\tPrénom: " << Prenom[i] << "\n\tNom: " << Nom[i] << "\n\tTel: " << Tel[i] << "\n\tDate de naissance: " << Date_de_naissance[i] << "\n\tDate d'adhésion: " << Date_dhadetion[i] << endl;
+            cout << "\n" << Id[i] << "/\n\tPrénom: " << Prenom[i] << "\n\tNom: " << Nom[i] << "\n\tTel: " << Tel[i] << "\n\tDate de naissance: " << Date_de_naissance[i] << "\n\tDate d'adhésion: " << Date_adhetion[i] << endl;
         }
     }
 
@@ -33,7 +47,7 @@ public:
         cout << "Quel adhérent vous voullez modifier ?";
         cin >> choix_modifier;
         cout << "\n----------------------------------------------------------------------\n\n";
-        while (choix_modifier >= size+1){//Je sais pas pourquoi do while loop ne fonctionne pas !!!
+        while (choix_modifier > size+1 || choix_modifier<1){//Je sais pas pourquoi do while loop ne fonctionne pas !!!
             cout << "Saisir un adhérent dans la liste ";
             cin >> choix_modifier;
             cout << "\n----------------------------------------------------------------------\n\n";
@@ -91,6 +105,30 @@ public:
             } while (choix_modifier1 != 6);
         } while (choix_modifier1 != 6);
     }
+    
+    void supprimer_adherent(){
+        show_adherent();
+        cout << "\n---------------------------------------------------------------------\n\n";
+        cout << "Quel adhérent voullez-vous supprimer ?";
+        cin >> choix_supprimer;
+        cout << "\n---------------------------------------------------------------------\n\n";
+        /*
+        do{
+            cout << "Saisir un adhérent dans la liste ";
+            cin >> choix_supprimer;
+            cout << "\n---------------------------------------------------------------------\n\n";
+        }
+        while(choix_modifier > size+1 || choix_modifier<1);*/
+
+        for(int i=choix_supprimer-1;i<size;i++){
+            Prenom[i]=Prenom[i+1];
+            Nom[i]=Nom[i+1];
+            Tel[i]=Tel[i+1];
+            Date_de_naissance[i]=Date_de_naissance[i+1];
+            Date_adhetion[i]=Date_adhetion[i+1];
+            size=size-1;
+        }
+    }
 };
 
 
@@ -98,13 +136,22 @@ public:
 //-----------------------------------Class Menu---------------------------------------//
 //------------------------------------------------------------------------------------//
 
-class Menu {
+class Menu :public Adherent {
 public:
     int choix = 0, choix_gestion_adherent=1;
 
     Menu() {
     }
 
+    void logo(){
+            cout << "                    ________________________________________\n";
+            cout << "                  _/_                                      _\\_\n";
+            cout << "               __/__/        Gestion du club de sport        \\__\\__\n";
+            cout << "              | « « |                 GEMI                   | » » |\n";
+            cout << "               ¯¯\\¯¯\\       Abderrahman BENIFFOU           /¯¯/¯¯\n";
+            cout << "                  ¯\\¯                                     ¯/¯\n";
+            cout << "                    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n\n\n";
+    }
     void display_menu() {
         cout << "1. Gestion des adhérents\n2. Gestion des entrainneurs\n3. Gestion des équipes\n4. Gestion des séances d'entrainements \n5. Gestion des équipements\n0. Quitter\n\n";
         cout << "Queceque vous voullez ?";
@@ -112,7 +159,7 @@ public:
         cout << "\n----------------------------------------------------------------------\n\n";
     }
 
-    void display_Gestion_des_adherents(Adherent &adherent) {
+    void display_Gestion_des_adherents() {
         do {
             cout << "1. Nouvelle inscription\n";
             cout << "2. Recherche\n";
@@ -126,17 +173,20 @@ public:
             switch (choix_gestion_adherent) {
                 case 1:
                     cout << "La fonction Nouvelle inscription\n\n";
+                    new_adherent();
                     break;
                 case 2:
-                    adherent.show_adherent();
+                    show_adherent();
                     cout << "\n----------------------------------------------------------------------\n\n";
                     break;
                 case 3:
-                    adherent.modifer_adherent();
+                    modifer_adherent();
                     cout << "\n----------------------------------------------------------------------\n\n";
                     break;
                 case 4:
                     cout << "La foction Supprimer\n\n";
+                    supprimer_adherent();
+                    cout << "\n---------------------------------------------------------------------\n\n";
                     break;
                 case 0:
                     exit(0);
@@ -150,7 +200,7 @@ public:
 };
 
 
-int Adherent::size = 2;
+int Adherent::size = 4;
 
 //------------------------------------------------------------------------------------//
 //-------------------------------Fonction Principale----------------------------------//
@@ -161,14 +211,7 @@ int main() {
 
     Menu menu = Menu();
     Adherent adherent = Adherent();
-
-    cout << "                    ________________________________________\n";
-    cout << "                  _/_                                      _\\_\n";
-    cout << "               __/__/        Gestion du club de sport        \\__\\__\n";
-    cout << "              | « « |                 GEMI                   | » » |\n";
-    cout << "               ¯¯\\¯¯\\       Abderrahman BENIFFOU           /¯¯/¯¯\n";
-    cout << "                  ¯\\¯                                     ¯/¯\n";
-    cout << "                    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n\n\n";
+    menu.logo();
 
     menu.display_menu();
     if (menu.getChoix() != 0) {
@@ -176,11 +219,10 @@ int main() {
         do {
             switch (menu.getChoix()) {
                 case 1:
-                    menu.display_Gestion_des_adherents(adherent);
+                    menu.display_Gestion_des_adherents();
                     break;
                 case 2:
                     do {
-
                         cout << "1. Nouvelle inscription\n";
                         cout << "2. Recherche\n";
                         cout << "3. Modifier\n";
@@ -217,4 +259,3 @@ int main() {
             }while (menu.getChoix()!=0);
             }else{exit(0);}
 }
-
