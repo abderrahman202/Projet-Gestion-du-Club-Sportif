@@ -15,28 +15,28 @@ private:
     string Prenom[100] = {"Abderrahman", "Mohamed","Youssef","Oussama"}, Nom[100] = {"BENIFFOU", "WASSUP","HOUARI","MESBAHI"}, Date_de_naissance[100] = {"01/01/2002", "01/02/2002","05/04/1981","21/01/1999"}, Date_adhetion[100] = {"01/02/2023", "15/12/2023","16/12/2023","15/12/2023"};
     
 public:
-    static int size;  
+    static int size_adherent;  
     Adherent() {
     }
 
     void new_adherent(){
-        Prenom[size]=size;
+        Prenom[size_adherent]=size_adherent;
         cout<<"Saisir le prénom: ";
-        cin>>Prenom[size];
+        cin>>Prenom[size_adherent];
         cout<<"\nSaisir le nom: ";
-        cin>>Nom[size];
+        cin>>Nom[size_adherent];
         cout<<"\nSaisir le Telephone: ";
-        cin>>Tel[size];
+        cin>>Tel[size_adherent];
         cout<<"Saisir la date de naissance: ";
-        cin>>Date_de_naissance[size];
+        cin>>Date_de_naissance[size_adherent];
         cout<<"Saisir la date d'adhésion: ";
-        cin>>Date_adhetion[size];
-        Id[size]=size+1;
-        size++;
+        cin>>Date_adhetion[size_adherent];
+        Id[size_adherent]=size_adherent+1;
+        size_adherent++;
         cout<<"\n---------------------------------------------------------------------\n\n";
     }
     void show_adherent() {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size_adherent; i++) {
             cout << "\n" << Id[i] << "/\n\tPrénom: " << Prenom[i] << "\n\tNom: " << Nom[i] << "\n\tTel: " << Tel[i] << "\n\tDate de naissance: " << Date_de_naissance[i] << "\n\tDate d'adhésion: " << Date_adhetion[i] << endl;
         }
     }
@@ -47,7 +47,7 @@ public:
         cout << "Quel adhérent vous voullez modifier ?";
         cin >> choix_modifier;
         cout << "\n----------------------------------------------------------------------\n\n";
-        while (choix_modifier > size+1 || choix_modifier<1){//Je sais pas pourquoi do while loop ne fonctionne pas !!!
+        while (choix_modifier > size_adherent+1 || choix_modifier<1){//Je sais pas pourquoi do while loop ne fonctionne pas !!!
             cout << "Saisir un adhérent dans la liste ";
             cin >> choix_modifier;
             cout << "\n----------------------------------------------------------------------\n\n";
@@ -56,7 +56,7 @@ public:
         cout << "1. Prénom\n";
         cout << "2. Nom\n";
         cout << "3. Tel\n";
-        cout << "4. Date de naissaince\n";
+        cout << "4. Date de naissance\n";
         cout << "5. Sports pratiquées\n";// N'est pas encore faite, parsqu'il faut avoir une listes des sports pratiquées dans le club
         cout << "6. Retour\n";
         cout << "0. Quitter\n";
@@ -118,16 +118,47 @@ public:
             cin >> choix_supprimer;
             cout << "\n---------------------------------------------------------------------\n\n";
         }
-        while(choix_modifier > size+1 || choix_modifier<1);*/
+        while(choix_modifier > size_adherent+1 || choix_modifier<1);*/
 
-        for(int i=choix_supprimer-1;i<size;i++){
+        for(int i=choix_supprimer-1;i<size_adherent;i++){
             Prenom[i]=Prenom[i+1];
             Nom[i]=Nom[i+1];
             Tel[i]=Tel[i+1];
             Date_de_naissance[i]=Date_de_naissance[i+1];
             Date_adhetion[i]=Date_adhetion[i+1];
-            size=size-1;
+            size_adherent=size_adherent-1;
         }
+    }
+};
+
+
+//------------------------------------------------------------------------------------//
+//---------------------------------Class Adherent-------------------------------------//
+//------------------------------------------------------------------------------------//
+
+class Entrainneur{
+private:
+    string Numero[100]={"EPZ3215","EP3215","EV3248"}, nom[100]={"Ahmed MOUDEN","Amine NASSIRI","Samir "},Telephone[100]={"0612548736","0751248963","0762045918"}, Date_de_naissance[100]={"09/12/1982","15/05/1991","23/04/1993"}, Date_embauche[20]={"16/12/2023"};
+    bool Permanent[100]={true,true,false};
+    double Salaire[80]={4000,4500}, Prix_heure[20]={50};
+public:
+    static int size_entrainneur;  
+    Entrainneur(){
+
+    }
+    void new_entrainneur(){
+        cout<<"\nSaisir le nom: ";
+        cin>>nom[size_entrainneur];
+        cout<<"\nSaisir le Telephone: ";
+        cin>>Telephone[size_entrainneur];
+        cout<<"Saisir la date de naissance: ";
+        cin>>Date_de_naissance[size_entrainneur];
+
+        cout<<"Saisir la date d'adhésion: ";
+        cin>>Date_embauche[size_entrainneur];
+        //Numero[size_entrainneur]=size_entrainneur+1;
+        size_entrainneur++;
+        cout<<"\n---------------------------------------------------------------------\n\n";
     }
 };
 
@@ -200,7 +231,8 @@ public:
 };
 
 
-int Adherent::size = 4;
+int Adherent::size_adherent = 4;
+int Entrainneur::size_entrainneur=2;
 
 //------------------------------------------------------------------------------------//
 //-------------------------------Fonction Principale----------------------------------//
