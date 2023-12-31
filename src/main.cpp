@@ -10,16 +10,18 @@ using namespace std;
 //------------------------------------------------------------------------------------//
 class Adherent{
 private:
-    int Id[100] = {1, 2,3,4}, choix_modifier = 0,choix_modifier1=0, choix_supprimer=0;
-    string Tel[100] = {"0611223344", "0660313525","0612345678","0645486935"};
-    string Prenom[100] = {"Abderrahman", "Mohamed","Youssef","Oussama"}, Nom[100] = {"BENIFFOU", "WASSUP","HOUARI","MESBAHI"}, Date_de_naissance[100] = {"01/01/2002", "01/02/2002","05/04/1981","21/01/1999"}, Date_adhetion[100] = {"01/02/2023", "15/12/2023","16/12/2023","15/12/2023"};
-    
+    int Numero[1000] = {1, 2, 3, 4}, choix_modifier = 0,choix_modifier1=0, choix_supprimer=0, New_id=1026;
+    string Tel[1000] = {"0611223344", "0660313525","0612345678","0645486935"}, Id[1000]={"AD1023","AD1024","AD1025","AD1026"}, AD="AD", New_Id;
+    string Prenom[1000] = {"Abderrahman", "Mohamed","Youssef","Oussama"}, Nom[1000] = {"BENIFFOU", "WASSUP","HOUARI","MESBAHI"};
+    string Date_de_naissance[1000] = {"01/01/2002", "01/02/2002","05/04/1981","21/01/1999"}, Date_adhetion[1000] = {"01/02/2023", "15/12/2023","16/12/2023","15/12/2023"};
+
 public:
     static int size_adherent;  
     Adherent() {
     }
 
     void new_adherent(){
+        if (size_adherent < 1000) {
         Prenom[size_adherent]=size_adherent;
         cout<<"Saisir le prénom: ";
         cin>>Prenom[size_adherent];
@@ -31,13 +33,18 @@ public:
         cin>>Date_de_naissance[size_adherent];
         cout<<"Saisir la date d'adhésion: ";
         cin>>Date_adhetion[size_adherent];
-        Id[size_adherent]=size_adherent+1;
+        Numero[size_adherent]=size_adherent+1;
+        New_Id=AD + to_string (++New_id);
+        Id[size_adherent] = New_Id;
         size_adherent++;
+        } else {
+            cout << "Nombre maximum d'adhérents atteint." << endl;
+        }
         cout<<"\n---------------------------------------------------------------------\n\n";
     }
     void show_adherent() {
         for (int i = 0; i < size_adherent; i++) {
-            cout << "\n" << Id[i] << "/\n\tPrénom: " << Prenom[i] << "\n\tNom: " << Nom[i] << "\n\tTel: " << Tel[i] << "\n\tDate de naissance: " << Date_de_naissance[i] << "\n\tDate d'adhésion: " << Date_adhetion[i] << endl;
+            cout << "\n" << Numero[i] << "/\n\t"<< "\n\tNuméro: " << Id[i]<<"\n\tPrénom: " << Prenom[i] << "\n\tNom: " << Nom[i] << "\n\tTel: " << Tel[i] << "\n\tDate de naissance: " << Date_de_naissance[i] << "\n\tDate d'adhésion: " << Date_adhetion[i] << endl;
         }
     }
 
@@ -112,15 +119,9 @@ public:
         cout << "Quel adhérent voullez-vous supprimer ?";
         cin >> choix_supprimer;
         cout << "\n---------------------------------------------------------------------\n\n";
-        /*
-        do{
-            cout << "Saisir un adhérent dans la liste ";
-            cin >> choix_supprimer;
-            cout << "\n---------------------------------------------------------------------\n\n";
-        }
-        while(choix_modifier > size_adherent+1 || choix_modifier<1);*/
 
         for(int i=choix_supprimer-1;i<size_adherent;i++){
+            Id[i]=Id[i+1];
             Prenom[i]=Prenom[i+1];
             Nom[i]=Nom[i+1];
             Tel[i]=Tel[i+1];
@@ -133,14 +134,14 @@ public:
 
 
 //------------------------------------------------------------------------------------//
-//---------------------------------Class Adherent-------------------------------------//
+//---------------------------------Class Entrainneur-------------------------------------//
 //------------------------------------------------------------------------------------//
 
 class Entrainneur{
 private:
-    string Numero[100]={"EPZ3215","EP3215","EV3248"}, nom[100]={"Ahmed MOUDEN","Amine NASSIRI","Samir "},Telephone[100]={"0612548736","0751248963","0762045918"}, Date_de_naissance[100]={"09/12/1982","15/05/1991","23/04/1993"}, Date_embauche[20]={"16/12/2023"};
-    bool Permanent[100]={true,true,false};
-    double Salaire[80]={4000,4500}, Prix_heure[20]={50};
+    string Numero[1000]={"EPZ3215","EP3215","EV3248"}, nom[1000]={"Ahmed MOUDEN","Amine NASSIRI","Samir "},Telephone[1000]={"0612548736","0751248963","0762045918"}, Date_de_naissance[1000]={"09/12/1982","15/05/1991","23/04/1993"}, Date_embauche[20]={"16/12/2023"};
+    bool Permanent[1000]={true,true,false};
+    double Salaire[50]={4000,4500}, Prix_heure[20]={50};
 public:
     static int size_entrainneur;  
     Entrainneur(){
@@ -156,7 +157,7 @@ public:
 
         cout<<"Saisir la date d'adhésion: ";
         cin>>Date_embauche[size_entrainneur];
-        //Numero[size_entrainneur]=size_entrainneur+1;
+        Numero[size_entrainneur]=size_entrainneur+1;
         size_entrainneur++;
         cout<<"\n---------------------------------------------------------------------\n\n";
     }
