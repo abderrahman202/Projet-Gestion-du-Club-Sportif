@@ -229,6 +229,34 @@ public:
     int getChoix() {
         return choix;
     }
+    void display_gestion_adherent(){
+        do {
+                cout << "1. Nouvelle inscription\n";
+                cout << "2. Recherche\n";
+                cout << "3. Modifier\n";
+                cout << "4. Supprimer \n";
+                cout << "5. Retour\n";
+                cout << "0. Quitter\n\n";
+                cin >>choix_adherents;
+                switch (choix_adherents)
+                {
+                case 1:
+                    cout<<"La fonction Nouvelle inscription\n\n";
+                    break;
+                case 2:
+                    cout<<"La fonction Recherche\n\n";
+                    break;
+                case 3:
+                    cout<<"La fonction Modifier\n\n";
+                    break;
+                case 4:
+                    cout<<"La foction Supprimer\n\n";
+                    break;
+                case 0:
+                    exit(0);
+                }
+            }while(choix_adherents!=5);
+    }
 };
 
 
@@ -255,32 +283,7 @@ int main() {
                     menu.display_Gestion_des_adherents();
                     break;
                 case 2:
-                    do {
-                        cout << "1. Nouvelle inscription\n";
-                        cout << "2. Recherche\n";
-                        cout << "3. Modifier\n";
-                        cout << "4. Supprimer \n";
-                        cout << "5. Retour\n";
-                        cout << "0. Quitter\n\n";
-                        cin >>choix_adherents;
-                        switch (choix_adherents)
-                        {
-                        case 1:
-                            cout<<"La fonction Nouvelle inscription\n\n";
-                            break;
-                        case 2:
-                            cout<<"La fonction Recherche\n\n";
-                            break;
-                        case 3:
-                            cout<<"La fonction Modifier\n\n";
-                            break;
-                        case 4:
-                            cout<<"La foction Supprimer\n\n";
-                            break;
-                        case 0:
-                            exit(0);
-                        }
-                    }while(choix_adherents!=5);
+                    
                     
                     break;
 
